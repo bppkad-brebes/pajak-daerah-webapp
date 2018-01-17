@@ -1,0 +1,85 @@
+<div class="tinggi">
+  <div class="card">
+    <div class="card-header">
+      Data Objek Pajak
+    </div>
+    <div class="card-body">
+<table>
+  <tr>
+    <td>NOP</td>
+    <td>:</td>
+    <td>{{ nop }}</td>
+  </tr>
+  <tr>
+    <td>Luas Bumi</td>
+    <td>:</td>
+    <td>{{ luasBumi | number }} m<sup>2</sup></td>
+  </tr>
+  <tr>
+    <td>Luas Bangunan</td>
+    <td>:</td>
+    <td>{{ luasBangunan | number }} m<sup>2</sup></td>
+  </tr>
+  <tr>
+    <td>NJOP Bumi</td>
+    <td>:</td>
+    <td>Rp. {{ njopBumi | number:id }}.-</td>
+  </tr>
+  <tr>
+    <td>NJOP Bangunan</td>
+    <td>:</td>
+    <td>Rp. {{ njopBangunan | number }}.-</td>
+  </tr>
+  <tr>
+    <td>Lokasi</td>
+    <td>:</td>
+    <td>{{ lokasi }}</td>
+  </tr>
+</table>
+    </div>
+    
+  </div>
+
+  <div style="padding-top: 20px;"></div>
+  <div class="card">
+    <div class="card-header">
+      Data Subjek Pajak
+    </div>
+    <div class="card-body">
+      <table>
+        <tr>
+          <td>Subjek Pajak ID</td>
+          <td>:</td>
+          <td>{{ spId }}</td>
+        </tr>
+        <tr>
+          <td>Nama Subjek Pajak</td>
+          <td>:</td>
+          <td>{{ namaSp }}</td>
+        </tr>
+        <tr>
+          <td>Alamat Subjek Pajak</td>
+          <td>:</td>
+          <td>{{ alamatSp }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="padding-top: 20px;"></div>
+  <div class="card">
+      <div class="card-header">
+        Data SPPT
+      </div>
+      <div class="card-body">
+        <table>
+          <tr *ngFor="let sppt of listSppt">
+            <td>Tahun {{ sppt.tahun }}</td>
+            <td>:</td>
+            <td>Rp. {{ sppt.jumlah | number }}.-</td>
+            <td>{{ sppt.status }}</td>
+          </tr>
+        </table>
+      </div>
+  </div>  
+</div>
