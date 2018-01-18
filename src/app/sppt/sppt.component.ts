@@ -19,6 +19,7 @@ export class SpptComponent implements OnInit {
   namaSp: string;
   alamatSp: string;
   listSppt: any;
+  apiUrl = 'http://localhost:1328/android_service'
 
   constructor(
     private route: ActivatedRoute ,
@@ -28,7 +29,7 @@ export class SpptComponent implements OnInit {
   ngOnInit() {
     this.nop = this.route.snapshot.paramMap.get('nop');
     let body = 'keyword=op&nop=' + this.nop;
-    this.http.post('http://pajak-daerah.brebeskab.go.id:1328/android_service', body)
+    this.http.post(this.apiUrl, body)
       .subscribe(data => {
         this.luasBumi = data['op_luas_bumi'];
         this.luasBangunan = data['op_luas_bng'];
@@ -40,7 +41,7 @@ export class SpptComponent implements OnInit {
       });
 
     let spptBody = 'keyword=sppt&nop=' + this.nop;
-    this.http.post('http://pajak-daerah.brebeskab.go.id:1328/android_service/sppt', spptBody) 
+    this.http.post(this.apiUrl + '/sppt', spptBody) 
       .subscribe(data => {
         this.listSppt = data;
         console.log(data);
@@ -49,7 +50,7 @@ export class SpptComponent implements OnInit {
 
   initSp(id): void {
     let bodySp = 'keyword=wp&subjek_pajak_id=' + this.spId;
-    this.http.post('http://pajak-daerah.brebeskab.go.id:1328/android_service', bodySp)
+    this.http.post(this.apiUrl, bodySp)
       .subscribe(data => {
         this.namaSp = data['wp_nama'];
         this.alamatSp = data['wp_jalan'] + ' ' + data['wp_rtrw'] + ' ' + data['wp_kel'] + ', ' + data['wp_kota'];
