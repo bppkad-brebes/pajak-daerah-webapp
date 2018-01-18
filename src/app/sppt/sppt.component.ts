@@ -19,7 +19,7 @@ export class SpptComponent implements OnInit {
   namaSp: string;
   alamatSp: string;
   listSppt: any;
-  apiUrl = 'http://localhost:1328/android_service'
+  apiUrl = 'http://192.168.2.27:1328/android_service'
 
   constructor(
     private route: ActivatedRoute ,
