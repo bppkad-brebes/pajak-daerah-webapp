@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; 
 import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-sppt',
@@ -23,12 +24,15 @@ export class SpptComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute ,
-    private http: HttpClient
+    private http: HttpClient, 
+    private zone: NgZone
   ) { }
 
   ngOnInit() {
     this.nop = this.route.snapshot.paramMap.get('nop');
     let body = 'keyword=op&nop=' + this.nop;
+
+    this.zone.run(() => {
     this.http.post(this.apiUrl, body)
       .subscribe(data => {
         this.luasBumi = data['op_luas_bumi'];
@@ -39,13 +43,16 @@ export class SpptComponent implements OnInit {
         this.spId = data['op_wp_id'];
         this.initSp(this.spId);
       });
-
-    let spptBody = 'keyword=sppt&nop=' + this.nop;
-    this.http.post(this.apiUrl + '/sppt', spptBody) 
+    
+      let spptBody = 'keyword=sppt&nop=' + this.nop;
+      this.http.post(this.apiUrl + '/sppt', spptBody) 
       .subscribe(data => {
         this.listSppt = data;
         console.log(data);
       });
+    });
+
+    
   }
 
   initSp(id): void {

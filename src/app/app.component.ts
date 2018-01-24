@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormControl } from '@angular/forms/src/model';
 import { Validators } from '@angular/forms/src/validators';
@@ -13,8 +13,14 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'app';
   nop: string;
+  showNopTxt: boolean = true;
+  showCariBtn: boolean = true;
+  showKembaliBtn: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private zone: NgZone) {
+    if(this.nop != null) 
+      this.cekNop(this.nop);
+  }
 
   ngOnInit(): void {
   }
@@ -23,8 +29,20 @@ export class AppComponent implements OnInit {
     if(nop.length != 18) {
       return;
     }
-    this.router.navigate(['/sppt/' + nop]);
+    this.zone.run(() => {
+      this.showNopTxt = false;
+      this.showCariBtn = false;
+      this.showKembaliBtn = true;
+      this.router.navigate(['/sppt/' + nop]);
+    });
   };
+
+  kembali() {
+    this.showNopTxt = true;
+    this.showCariBtn = true;
+    this.showKembaliBtn = false;
+    this.router.navigate(['/']);
+  }
 }
 
 
