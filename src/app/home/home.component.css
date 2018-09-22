@@ -1,3 +1,20 @@
 .tinggi {
     padding-top: 60px;
 }
+
+.mat-cell.mat-column-nilaiTarget {
+    text-align: right;
+}
+
+.mat-cell.mat-column-nilaiRealisasi {
+    text-align: right;
+}
+
+.mat-cell.mat-column-prosentase {
+    text-align: right;
+}
+
+.mat-header.mat-column-nilaiTarget {
+    text-align: right;
+}
+
