@@ -12,7 +12,11 @@ export class TargetRealisasiPdService {
   constructor(private config: ConfigService, private http: HttpClient) { }
 
   getTargetRealisasiPd(): Observable<any> {
-    return this.http.post<any>(this.config.url + "/api/pd/get-target-in-current-year", {});
+    return this.http.post<any>(this.config.urlSimdaService + "/api/pd/get-target-in-current-year", {});
+  }
+
+  getRealisasiPbb(): Observable<any> {
+    return this.http.post<any>(this.config.urlPbbBiller + "/api/biller/get-realisasi-by-current-year", {});
   }
 
 }

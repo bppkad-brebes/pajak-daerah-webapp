@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class ConfigService {
 
-  public url = "http://localhost:3737";
+  public urlSimdaService = "http://localhost:3737";
+  public urlPbbBiller = "http://localhost:3738";
 
   constructor() { }
 }
